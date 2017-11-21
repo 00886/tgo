@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tgo.core.dao.GoodsInfoDao">
+    <!--<resultMap id="userMap" type="UserInfo">
+        <id property="userId" column="user_id"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="user_sex" property="userSex"></result>
+        <result column="user_phone" property="userPhone"></result>
+        <result column="user_pw" property="userPw"></result>
+        <result column="user_type" property="userType"></result>
+    </resultMap>-->
+
+    <insert id="add" parameterType="GoodsInfo">
+        INSERT INTO goods_info(goods_name,goods_price,goods_url,goods_desc,goods_state)
+        VALUES(#{goodsName},#{goodsPrice},#{goodsUrl},#{goodsDesc},#{goodsState})
+    </insert>
+</mapper>
