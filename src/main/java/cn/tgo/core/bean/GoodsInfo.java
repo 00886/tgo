@@ -1,9 +1,11 @@
 package cn.tgo.core.bean;
 
+import cn.tgo.util.BaseBean;
+
 /**
  * 商品信息
  */
-public class GoodsInfo {
+public class GoodsInfo extends BaseBean{
     private Integer goodsId;
     private String goodsName;
     private Double goodsPrice;
@@ -57,5 +59,9 @@ public class GoodsInfo {
 
     public void setGoodsState(String goodsState) {
         this.goodsState = goodsState;
+    }
+    @Override
+    public String toString() {
+        return "GoodsInfo:[goodsId="+goodsId+",goodsName="+goodsName+",goodsUrl="+goodsUrl+",goodsPrice="+goodsPrice+",goodsDesc="+goodsDesc+",goodsState="+goodsState+"]";
     }
 }

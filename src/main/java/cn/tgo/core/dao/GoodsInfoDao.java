@@ -4,6 +4,7 @@ import cn.tgo.core.bean.GoodsInfo;
 import cn.tgo.core.bean.UserInfo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsInfoDao {
     /**
@@ -32,7 +33,7 @@ public interface GoodsInfoDao {
      * @param goodsInfo
      * @return
      */
-    public List<UserInfo> getUserList(GoodsInfo goodsInfo);
+    public List<Map> getGoodsList(GoodsInfo goodsInfo);
 
     /**
      * 查询总记录数
@@ -43,8 +44,10 @@ public interface GoodsInfoDao {
 
     /**
      * 根据条件查询用户
-     * @param user
+     * @param goodsInfo
      * @return
      */
-    UserInfo getUserInfo(UserInfo user);
+    public Map getGoodsInfo(GoodsInfo goodsInfo);
+
+
 }

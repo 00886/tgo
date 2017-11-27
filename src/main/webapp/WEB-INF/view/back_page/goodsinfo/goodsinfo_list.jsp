@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="cn.tgo.util.Common" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	session.setAttribute("imgurl",Common.IMG_SERVER_URL);
 %>
 <%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -64,7 +66,7 @@
 						<td>${goods.goods_id}</td>
 						<td><a href="goods/goodsinfo.do?goodsId=${goods.goods_id }">${goods.goods_name }</a></td>
 						<td><img src="${imgurl}${goods.goods_url }" height="50"
-							width="100" /></td>
+							width="50" /></td>
 						<td>${goods.goods_price }</td>
 						<td>${goods.goods_state=='-1'?'未上架':'' }
 						${goods.goods_state=='1'?'销售中':'' }
@@ -80,11 +82,11 @@
 
 			</table>
 			<div align="right" style="padding: 10px;">
-				<pg:pager items="${total }" url="user/list.do" maxIndexPages="3"
+				<pg:pager items="${total }" url="goods/list.do" maxIndexPages="3"
 					export="currentPageNumber=pageNumber" scope="request">
 					<%-- <pg:param name="userName" value="${userName }" /> --%>
 
-					<jsp:include page="../../../res/jsp/pager_tag.jsp" flush="true" />
+					<jsp:include page="../../../../res/jsp/pager_tag.jsp" flush="true" />
 				</pg:pager>
 			</div>
 		</div>

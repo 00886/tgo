@@ -12,6 +12,7 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Map;
 
 @ContextConfiguration(locations = {"classpath:application-context.xml"})
 public class GoodsInfoServiceTest extends AbstractTransactionalTestNGSpringContextTests {
@@ -27,16 +28,16 @@ public class GoodsInfoServiceTest extends AbstractTransactionalTestNGSpringConte
        goodsInfo.setGoodsState("1");
        goodsInfoService.addGoods(goodsInfo);
     }
-  /*  @Test
-    public void queryUserByCriteria() throws Exception {
-        UserInfo userInfo = new UserInfo();
-        //userInfo.setUserName("华");
-        userInfo.setUserType("");
-       List<UserInfo> list = userInfoService.getList(userInfo);
-        for (UserInfo u : list) {
-            System.out.println(u);
+    @Test
+    public void getListTest() throws Exception {
+        GoodsInfo goodsInfo = new GoodsInfo();
+        goodsInfo.setGoodsName("美女");
+       List<Map> list = goodsInfoService.getList(null);
+        for (Map m : list) {
+            System.out.println(m.get("goods_name")+"  "+m.get("goods_url"));
         }
     }
+   /*
     public static void main(String[] args) throws Exception {
         UserInfo user = new UserInfo();
         user.setUserName("啊啊啊");

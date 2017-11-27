@@ -16,4 +16,62 @@
         INSERT INTO goods_info(goods_name,goods_price,goods_url,goods_desc,goods_state)
         VALUES(#{goodsName},#{goodsPrice},#{goodsUrl},#{goodsDesc},#{goodsState})
     </insert>
+
+    <select id="getGoodsList" parameterType="GoodsInfo" resultType="Map">
+        SELECT * FROM goods_info
+        <where>
+            <if test="goodsState!=null and goodsState!=''">
+              goods_state=#{goodsState}
+            </if>
+            <if test="goodsName!=null and goodsName!=''">
+              goods_name=#{goodsName}
+            </if>
+        </where>
+        ORDER BY goods_id DESC
+        LIMIT #{start},#{length}
+    </select>
+
+    <select id="getCount" parameterType="GoodsInfo" resultType="java.lang.Long">
+        SELECT count(1) FROM goods_info
+        <where>
+            <if test="goodsName!=null and goodsName!=''">
+                AND goods_name like #{goodsName}
+            </if>
+        </where>
+    </select>
+
+    <select id="getGoodsInfo" parameterType="GoodsInfo" resultType="Map">
+      SELECT * FROM goods_info
+      <where>
+          <if test="goodsId!=null">
+              goods_id=#{goodsId}
+          </if>
+      </where>
+    </select>
+
+    <update id="update" parameterType="GoodsInfo">
+        UPDATE goods_info
+        <set>
+            <if test="goodsName!=null and goodsName!=''">
+                goods_name=#{goodsName},
+            </if>
+            <if test="goodsPrice!=null">
+                goods_price=#{goodsPrice},
+            </if>
+            <if test="goodsUrl!=null and goodsUrl!=''">
+                goods_url=#{goodsUrl},
+            </if>
+            <if test="goodsDesc!=null and goodsDesc!=''">
+                goods_desc=#{goodsDesc},
+            </if>
+            <if test="goodsState!=null and goodsState!=''">
+                goods_state=#{goodsState},
+            </if>
+        </set>
+        <where>
+            <if test="goodsId!=null">
+                goods_id=#{goodsId}
+            </if>
+        </where>
+    </update>
 </mapper>

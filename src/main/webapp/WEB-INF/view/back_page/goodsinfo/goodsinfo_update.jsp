@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>商品修改</title>
+<title>商品添加</title>
 <link href="res/css/bootstrap.min.css" rel="stylesheet" />
 <link href="res/css/jquery.validator.css" rel="stylesheet" />
 <script type="text/javascript" src="res/js/jquery.min.js"></script>
@@ -20,20 +20,19 @@
 <script type="text/javascript" src="res/js/zh_CN.js"></script>
 <script src="res/common/js/jquery.form.js"></script>
 <script type="text/javascript" src="res/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 	<div>
 		<ul class="breadcrumb" style="margin: 0px;">
 			<li>系统管理</li>
 			<li>商品管理</li>
-			<li>商品修改</li>
+			<li>商品添加</li>
 		</ul>
 	</div>
 	<form id="goodsform" action="goods/update.do" class="form-horizontal" method="post"
 		data-validator-option="{theme:'yellow_top',stopOnError:true}"
-		enctype="multipart/form-data"> 
-		
-		<input type="hidden" name="goodsId" value="${goods.goods_id }"/>
+		enctype="multipart/form-data">
 		<h5 class="page-header alert-info"
 			style="margin: 0px; padding: 10px; margin-bottom: 10px;">基本信息</h5>
 		<!-- 开始1 -->
@@ -42,8 +41,9 @@
 				<div class="form-group ">
 					<label class="col-xs-3 control-label">商品名称</label>
 					<div class="col-xs-9 ">
+						<input type="hidden" name="goodsId" value="${goods.goods_id}">
 						<input type="text" name="goodsName" data-rule="商品名称:required;"
-						 value="${goods.goods_name }" lass="form-control" placeholder="请输入商品名称" />
+							class="form-control" placeholder="请输入商品名称" value="${goods.goods_name}" />
 					</div>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 					<label class="col-xs-3 control-label">商品价格</label>
 					<div class="col-xs-9 ">
 						<input type="text" name="goodsPrice" data-rule="商品价格:required;"
-							class="form-control" placeholder="请输入商品价格" value="${goods.goods_price }" />
+							class="form-control" placeholder="请输入商品价格" value="${goods.goods_price}" />
 					</div>
 				</div>
 			</div>
@@ -65,14 +65,14 @@
 					<label class="col-xs-3 control-label">商品图片</label>
 					<div class="col-xs-3 ">
 						<input type="file" name="shopimg" onchange="uploadImg()" />
-						<input type="hidden" name="goodsUrl" id="goodsUrl" value="${goods.goods_url }"/>
+						<input type="hidden" name="goodsUrl" id="goodsUrl"/>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-5">
 				<div class="form-group ">
 					<label class="col-xs-3 control-label">上传图片大小（150*150px）</label>
-					<div class="col-xs-3 " ><img id="shopimg" alt="" src="${imgurl}${goods.goods_url }" width="150" height="150"></div>
+					<div class="col-xs-3 " ><img id="shopimg" alt="" src="${imgurl}${goods.goods_url}" width="150" height="150"></div>
 				</div>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 				<div class="form-group ">
 				<div class="col-xs-1"></div>
 					<div class="col-xs-9">
-						<textarea class="ckeditor" id="goodsDesc" name="goodsDesc" class="form-control">${goods.goods_desc }</textarea>
+						<textarea class="ckeditor" id="goodsDesc" name="goodsDesc" class="form-control">${goods.goods_desc}</textarea>
 					</div>
 				</div>
 			</div>

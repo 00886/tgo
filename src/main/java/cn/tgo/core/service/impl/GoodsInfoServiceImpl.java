@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
+
 @Service("goodsInfoService")
 @Transactional
 public class GoodsInfoServiceImpl implements GoodsInfoService {
@@ -17,9 +20,23 @@ public class GoodsInfoServiceImpl implements GoodsInfoService {
 
     }
 
-    public GoodsInfoDao getGoodsInfoDao() {
-        return goodsInfoDao;
+    @Transactional(readOnly = true)
+    public List<Map> getList(GoodsInfo goodsInfo) {
+        return goodsInfoDao.getGoodsList(goodsInfo);
     }
+    @Transactional(readOnly = true)
+    public Long getCount(GoodsInfo goodsInfo) {
+        return goodsInfoDao.getCount(goodsInfo);
+    }
+    @Transactional(readOnly = true)
+    public Map getGoodsInfo(GoodsInfo goodsInfo) {
+        return goodsInfoDao.getGoodsInfo(goodsInfo);
+    }
+
+    public void updateGoods(GoodsInfo goodsInfo) {
+        System.out.println("更新"+goodsInfoDao.update(goodsInfo)+"条记录");
+    }
+
 
     @Autowired
     public void setGoodsInfoDao(GoodsInfoDao goodsInfoDao) {

@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>商品添加s</title>
+<title>商品添加</title>
 <link href="res/css/bootstrap.min.css" rel="stylesheet" />
 <link href="res/css/jquery.validator.css" rel="stylesheet" />
 <script type="text/javascript" src="res/js/jquery.min.js"></script>
@@ -20,6 +20,7 @@
 <script type="text/javascript" src="res/js/zh_CN.js"></script>
 <script src="res/common/js/jquery.form.js"></script>
 <script type="text/javascript" src="res/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 	<div>
@@ -40,8 +41,7 @@
 				<div class="form-group ">
 					<label class="col-xs-3 control-label">商品名称</label>
 					<div class="col-xs-9 ">
-						<p class="form-control-static">${goods.goods_name }</p>
-					
+						<p class="form-control-static">${goods.goods_name}</p>
 					</div>
 				</div>
 			</div>
@@ -49,8 +49,7 @@
 				<div class="form-group ">
 					<label class="col-xs-3 control-label">商品价格</label>
 					<div class="col-xs-9 ">
-					<p class="form-control-static">￥${goods.goods_price }</p>
-						
+						<p class="form-control-static">${goods.goods_price}</p>
 					</div>
 				</div>
 			</div>
@@ -58,11 +57,12 @@
 		<!--结束1 -->
 		<!-- 开始2 -->
 		<div class="row" style="height: 14em">
-		
 			<div class="col-xs-5">
 				<div class="form-group ">
-					<label class="col-xs-3 control-label">上传图片大小（150*150px）</label>
-					<div class="col-xs-3 " ><img id="shopimg" alt="" src="${imgurl}${goods.goods_url }" width="150" height="150"></div>
+					<label class="col-xs-3 control-label">商品图片</label>
+					<div class="col-xs-3 ">
+						<img src="${imgurl}${goods.goods_url}" width="100" height="100"/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -79,11 +79,8 @@
 			<div class="col-xs-12">
 				<div class="form-group ">
 				<div class="col-xs-1"></div>
-					<div class="col-xs-10">
-						${goods.goods_desc }
-					</div>
+					${goods.goods_desc}
 				</div>
-				<div class="col-xs-1"></div>
 			</div>
 
 		</div>
@@ -91,10 +88,32 @@
 
 		<div class="row">
 			<div class="col-xs-3 col-xs-offset-4">
-				<a class="btn btn-success" href="goods/loadupdate.do?goodsId=${goods.goods_id }" >修改商品</a>
-				<a class="btn btn-warning" href="goods/list.do" >返回上一级</a>
+				<a href="goods/loadupdate.do?goodsId=${goods.goods_id}" class="btn btn-info">修改商品</a>&nbsp;&nbsp;<a href="goods/list.do" class="btn btn-warning">返回上一级</a>
 			</div>
 		</div>
 	</form>
+	<script type="text/javascript">
+		var info ="${info}";
+		if(info.length>1){
+			alert(info);
+		}
+	
+	
+		function uploadImg() {
+			var options={
+					url:"goods/upload.do",
+					dataType:"json",
+					type:"post",
+					success:function(data){
+						//alert(data.path+"  "+data.url);
+						$("#goodsUrl").val(data.path);
+						$("#shopimg").attr("src",data.url);
+					}	
+			};
+			
+			$("#goodsform").ajaxSubmit(options);
+		}
+	</script>
+
 </body>
 </html>

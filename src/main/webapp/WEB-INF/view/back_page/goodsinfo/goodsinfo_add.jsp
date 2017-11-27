@@ -20,6 +20,7 @@
 <script type="text/javascript" src="res/js/zh_CN.js"></script>
 <script src="res/common/js/jquery.form.js"></script>
 <script type="text/javascript" src="res/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 	<div>

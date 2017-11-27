@@ -23,7 +23,7 @@ public class UserInfoServiceTest extends AbstractTransactionalTestNGSpringContex
        userInfoService.addUser(userInfo);
     }
     @Test
-    public void queryUserByCriteria() throws Exception {
+    public void getListTest() throws Exception {
         UserInfo userInfo = new UserInfo();
         //userInfo.setUserName("华");
         userInfo.setUserType("");
