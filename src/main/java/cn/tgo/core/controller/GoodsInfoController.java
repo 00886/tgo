@@ -122,7 +122,7 @@ public class GoodsInfoController extends BaseController {
 
     }
     @RequestMapping("/list.do")
-    public String list(Model model, GoodsInfo goodsInfo,ImgUrl imgurl, HttpServletRequest request){
+    public String list(Model model, GoodsInfo goodsInfo, HttpServletRequest request){
         if(goodsInfo != null){
             initPage(request);
             //设置起始记录数
@@ -164,7 +164,7 @@ public class GoodsInfoController extends BaseController {
         return "goodsinfo/goodsinfo_show";
     }
     @RequestMapping("/update.do")
-    public String update(GoodsInfo goodsInfo,Model model){
+    public String update(GoodsInfo goodsInfo,Model model,HttpServletRequest request){
         String info = "操作失败！";
         try {
             System.out.println(goodsInfo.toString());
@@ -174,7 +174,7 @@ public class GoodsInfoController extends BaseController {
             e.printStackTrace();
         }
         model.addAttribute("info",info);
-        return "goodsinfo/goodsinfo_update";
+        return list(model,goodsInfo,request);
     }
 
     @Autowired
